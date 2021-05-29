@@ -1,0 +1,228 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+
+:root{
+    --bg-color: #f37928;
+    --bg-color-1: #5746f3;
+    --bg-color-2: #3fe29e;
+    --bg-color-3: #ee3d63;
+    --bg-color-4: #cc21c1;
+    --bg-color-5: #232323;
+    color: #ffffff;
+    --bd-color: #eeeeee;
+}
+
+.grid-items {
+    background-color: var(--bg-color);
+    color: currentColor;
+    margin: 5px;
+    padding: 25px;
+    border-radius: 3px;
+    font-family: serif;
+    font-size: 21px;
+    font-weight: 300;
+    text-align: center;
+}
+.grid-items-1 {
+    background-color: var(--bg-color-1);
+    margin: 5px;
+    padding: 25px;
+    border-radius: 3px;
+    font-family: serif;
+    font-size: 21px;
+    font-weight: 300;
+    text-align: center;
+}
+.grid-items-2 {
+    background-color: var(--bg-color-2);
+    margin: 0;
+    padding: 25px;
+    border-radius: 3px;
+    font-family: serif;
+    font-size: 21px;
+    font-weight: 300;
+    text-align: center;
+}
+.grid-items-3 {
+    background-color: var(--bg-color-3);
+    margin: 0;
+    padding: 25px;
+    border-radius: 3px;
+    font-family: serif;
+    font-size: 21px;
+    font-weight: 300;
+    text-align: center;
+}
+.grid-items-4 {
+    background-color: var(--bg-color-4);
+    margin: 0;
+    padding: 25px;
+    border-radius: 3px;
+    font-family: serif;
+    font-size: 21px;
+    font-weight: 300;
+    text-align: center;
+}
+.grid-items-5 {
+    background-color: var(--bg-color-5);
+    margin: 0;
+    padding: 25px;
+    font-family: serif;
+    font-size: 21px;
+    font-weight: 300;
+    text-align: center;
+}
+header,section,.article-1,aside,footer{
+    border: 3px solid var(--bd-color);
+    margin: 5px;
+}
+
+
+#grid{
+    margin: 0;
+    padding: 0;
+    display: grid;
+
+    /* 
+    grid-template-columns : create N columns with specified size
+        N can be :
+        1- integer or float number
+        2- auto
+    */
+
+    grid-template-columns: auto 300px 450px;
+    /* grid-template-columns: auto 300px 450px 500px; (500px is empty space) */
+}
+
+#grid-1 {
+    margin: 0;
+    padding: 0;
+    display: grid;
+    /* 
+        grid-template-columns: 300px 300px 300px; 
+                        similar to
+        grid-template-columns: repeat(3, 300px);
+    */
+    grid-template-columns: repeat(3, 300px);
+}
+
+#grid-2 {
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr 2fr 3fr;
+    /* grid-template-columns: repeat(3,1fr); */
+
+
+    /* grid-gap OR gap (grid-gap renamed in css3) : row-gap column-gap ; */
+    gap: 30px;
+
+
+    /* 
+    grid-template-rows : create N rows with specified size
+        N can be :
+        1- integer or float number
+        2- auto
+    */
+    grid-template-rows: 1fr 3fr;
+}
+
+.grid-items-2:first-child{
+    /* 
+    grid-column: grid-column-start / grid-column-end ;
+    */
+    /* grid-column-start: 1;
+    grid-column-end: 3; */
+
+    /* 
+    grid-column-start OR grid-column-end : can be span N (N is integer number) 
+        span N is the size of 2 box lines (example span 3 is equal to 4)
+    */
+    grid-column: 1 / span 2;
+    grid-row: 1 / 4;
+}
+
+.grid-items-2:nth-child(2){
+    /* 
+    grid-row: grid-row-start / grid-row-end;
+    */
+    /* grid-row-start: 1;
+    grid-row-end: 2; */
+    grid-row: 1 / 2;
+}
+
+#grid-3{
+    display: grid;
+    /* grid-template-columns: repeat(3,1fr); */
+    gap: 5px;
+
+    /* minmax(min-size,max-size) : grid-template-columns AND grid-template-rows */
+    /* grid-template-rows: minmax(9px,90px); */
+    /* grid-template-rows: repeat(2,minmax(90px,auto)); */
+    grid-template-rows: minmax(9px, auto) minmax(9px, 300px);
+    
+    /* auto-fill : create auto fill columns OR rows*/
+    /* grid-template-columns: repeat(auto-fill,120px); */
+    grid-template-columns: repeat(auto-fill,minmax(50px,500px));
+}
+
+#grid-4 {
+    display: grid;
+    /* grid-template-columns: repeat(3,1fr); */
+    gap: 5px;
+
+    /* auto-fit : create auto fit (full cover) columns OR rows*/
+    grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+
+    /* 
+    grid-auto-flow : adjust box items in direction row OR column OR dense 
+        * : dense is fill space empty
+    */
+    /* grid-auto-flow: column dense; */
+}
+
+#grid-5{
+    display: grid;
+
+    /* 
+    grid-template-areas : create areas website (example header, sidebar, sections, footer, ...) in 
+        different columns OR N columns (N is integer number) AND which must be a string value
+
+        * : to set the grid-template-areas,you must define the grid-area for each parts
+        ** : (.) for create empty cell 
+    */
+
+    /* in 2 columns */
+    grid-template-areas: 
+    "header header . ."
+    "sidebar section section section"
+    "sidebar article article article"
+    "footer footer footer footer"
+    ;
+}
+#header-1{
+    /* 
+    grid-area : 
+        can be:
+        1- item name (any name that used on grid-template-areas)
+        2- grid-row-start / grid-column-start / grid-row-end / grid-column-end
+    */
+    grid-area: header;
+}
+section{
+    grid-area: section;
+}
+.article-1{
+    grid-area: article;
+}
+aside{
+    grid-area: sidebar;
+}
+footer{
+    grid-area: footer;
+}
+
+
+
